@@ -2,7 +2,6 @@ import './index.css';
 import Card from '../scripts/Card.js';
 import Section from '../scripts/Section.js';
 import { FormValidator, validationConfig } from '../scripts/FormValidator.js';
-
 import { initialCards } from '../utils/initialCards.js';
 import {
   elements,
@@ -56,26 +55,28 @@ function handleCardClick(name, link) {
 };
 
 
-const popupHandleEdit = new PopupWithForm(popupEdit, () => {
-  user.setUserInfo(nameField, aboutField);
+const popupHandleEdit = new PopupWithForm(popupEdit, (item) => {
+  console.log(item);
+  user.setUserInfo({ name: item['name'], info: item['about'] });
   popupHandleEdit.close();
 });
 
 const popupHandleAdd = new PopupWithForm(popupAdd, (data) => {
   addNewCard.addItem(createCard(data));
   popupHandleAdd.close();
-  console.log(data);
+  // console.log(data);
 });
 
 edditButton.addEventListener('click', () => {
   popupHandleEdit.open();
-  const UserInfo = user.getUserInfo();
-  nameField.value = UserInfo.user;
-  aboutField.value = UserInfo.description;
+  const userInfo = user.getUserInfo();
+  nameField.value = userInfo.name;
+  aboutField.value = userInfo.info;
 });
 
 addButton.addEventListener('click', () => {
   popupHandleAdd.open();
+  popupFormAddValidator.resetValidationState();//задает состояние кнопки при открытии попапа
 });
 
 //слушатели

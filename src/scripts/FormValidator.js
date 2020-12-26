@@ -20,16 +20,13 @@ export class FormValidator {
             evt.preventDefault();
         });
         this._setEventListeners();
-        // this._setButtonState(); //правильное состояние кнопки. вызываем состояние, соответствующее валидности кнопки
     };
 
     _setEventListeners() {
-        this._setButtonState();
         this._inputList.forEach((input) => {
             input.addEventListener('input', () => {
                 this._checkInputValidity(input);
                 this._setButtonState();
-
             });
         });
     };
@@ -59,6 +56,7 @@ export class FormValidator {
         this._inputList.forEach((input) => {
             this._hideError(input);
         });
+        this._setButtonState();
     };
 
     _deactiveInput() {
@@ -66,7 +64,6 @@ export class FormValidator {
             return !input.validity.valid;
         });
     };
-
 
     _setButtonState() {
         if (this._deactiveInput(this._inputList)) {
