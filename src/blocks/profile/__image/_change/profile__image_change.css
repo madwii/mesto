@@ -1,4 +1,4 @@
-.profile__image_change {
+.profile__image_change{
     background-image: url('../../../../images/pen_change.svg');
     background-repeat: no-repeat;
     background-position: center;
@@ -15,6 +15,6 @@
 
 .profile__image_change:hover {
     opacity: 1;
-    background-color: rgba(0,0,0,.8);
     transition: opacity 0.2s ease-in-out;
+    background-color: rgba(0, 0, 0, .8);
 }
