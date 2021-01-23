@@ -2,7 +2,7 @@
 export const elements = document.querySelector('.elements');
 
 //кнопки попапов
-export const userAvatarBtn = document.querySelector('.profile__image_change');
+export const userAvatarBtn = document.querySelector('.profile__image-button');
 export const userEditBtn = document.querySelector('.profile__edit-button');
 export const userAddBtn = document.querySelector('.profile__add-button');
 
