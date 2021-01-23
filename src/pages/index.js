@@ -44,7 +44,7 @@ const myId = api.userId;
 const user = new UserInfo(profileConfig);
 
 Promise.all([api.getUserData(),
-  api.getInitialCards()])
+api.getInitialCards()])
   .then(([userData, result]) => {
     user.setUserInfo(userData);
     cardList.renderCards(result);

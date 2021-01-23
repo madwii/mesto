@@ -1,6 +1,5 @@
 export default class Api {
-  constructor({ baseUrl, userId, headers })
-  {
+  constructor({ baseUrl, userId, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
     this.userId = userId;
@@ -16,15 +15,15 @@ export default class Api {
 
   setUserData(data) {
     return fetch(`${this._baseUrl}/users/me`,
-    {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify(
-        {
-          name: data.name,
-          about: data.about,
-        }),
-    })
+      {
+        method: "PATCH",
+        headers: this._headers,
+        body: JSON.stringify(
+          {
+            name: data.name,
+            about: data.about,
+          }),
+      })
       .then(this.getStatus);
   }
 
