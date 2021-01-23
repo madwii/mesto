@@ -1,19 +1,20 @@
 //класс Section, который отвечает за отрисовку элементов на странице
 
 export default class Section {
-    constructor({ items, renderer }, containerSelector) {
-        this._items = items;
+    constructor({ renderer }, containerSelector) {
         this._renderer = renderer;
         this._container = containerSelector;
+
     };
 
-    renderer() {
-        this._items.reverse().forEach(item => {//первый элемент массива становится последним, а последний — первым.
+    renderCards(items) {
+        items.reverse().forEach(item => {//первый элемент массива становится последним, а последний — первым.
             this._renderer(item);
         });
     };
 
     addItem(item) {
+        console.log(this._container);
         this._container.prepend(item);
     };
 };
