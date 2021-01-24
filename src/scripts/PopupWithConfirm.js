@@ -18,8 +18,4 @@ export default class PopupWithConfirm extends Popup {
   сonfirmHandler(turn) {
     this._handleConfirm = turn;
   }
-
-  open() {
-    super.open();
-  }
 }

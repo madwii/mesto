@@ -26,7 +26,7 @@ import UserInfo from '../scripts/UserInfo.js';
 
 export const apiConfig = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
-  userId: '486f4cfdd86508efc4a3eb06',
+  // userId: '486f4cfdd86508efc4a3eb06',// сервер не работал. убрана привязка по id
   headers: {
     authorization: '1d464b43-9695-4331-8a3a-49b913826759',
     'Content-Type': 'application/json'
@@ -39,13 +39,15 @@ export const profileConfig = {
   avatar: userAvatar
 }
 
+let myId;//подгружаем с сервера в 50-й строке
+
 const api = new Api(apiConfig);
-const myId = api.userId;
 const user = new UserInfo(profileConfig);
 
 Promise.all([api.getUserData(),
 api.getInitialCards()])
   .then(([userData, result]) => {
+    myId = userData._id
     user.setUserInfo(userData);
     cardList.renderCards(result);
   })
@@ -64,10 +66,13 @@ const popupWithConfirm = new PopupWithConfirm(popupConfirm);
 const popupWithImage = new PopupWithImage(popupImage);
 
 // отрисовка элементов.. массив
-const cardList = new Section({ renderer: (item) => renderCards(item) }, elements);
 
+function renderCards(item) {//отдельная функция для рендеринга. можно настроить порядок отрисовки
+  const card = createCard(item)
+  cardList.addItem(card);
+};
 
-function renderCards(item) {
+function createCard(item) {//отдельная функция для создания новой карточки. возвращает готовую карточку
   const card = new Card(item, "#element-template", myId, {
     handleCardClick: () => {
       popupWithImage.open(item.name, item.link);
@@ -108,8 +113,12 @@ function renderCards(item) {
         });
     },
   });
-  cardList.addItem(card.generateCard());
+  return card.generateCard();
 };
+
+
+
+const cardList = new Section({ renderer: (item) => renderCards(item) }, elements);
 
 //смена имени пользователя
 const popupEditProfile = new PopupWithForm(popupEdit, {
