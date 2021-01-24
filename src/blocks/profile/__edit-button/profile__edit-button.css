@@ -1,9 +1,9 @@
 .profile__edit-button {
     justify-self: flex-start;
     align-self: center;
-    width: 26px;
-    height: 26px;
-    border: 1px solid #FFFFFF;;
+    width: 24px;
+    height: 24px;
+    border: 1px solid white;
     cursor: pointer;
     box-sizing: border-box;
     background-color: black;
